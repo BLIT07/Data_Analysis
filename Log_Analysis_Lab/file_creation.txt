@@ -1,0 +1,53 @@
+Create the directory — permissions must be 755 so labadmin can traverse it:
+
+
+sudo mkdir -p /var/company/crm
+sudo chmod 755 /var/company/crm
+sudo chown root:root /var/company/crm
+
+
+
+
+Create Q3_client_accounts.csv:
+
+
+sudo tee /var/company/crm/Q3_client_accounts.csv << 'EOF'
+account_id,client_name,email,phone,contract_value,renewal_date
+AC-1001,Meridian Logistics,procurement@meridian-log.com.au,0289441200,85000.00,2025-06-30
+AC-1002,Coastal Realty Group,accounts@coastalrealty.com.au,0733812900,42500.00,2025-09-15
+AC-1003,Summit Engineering,finance@summit-eng.com.au,0893360140,127000.00,2026-01-31
+AC-1004,Blue River Capital,ops@bluerivercap.com.au,0362291870,310000.00,2025-12-01
+AC-1005,Hargreaves Medical,billing@hargreavesmed.com.au,0296187430,56000.00,2026-03-20
+EOF
+
+Create internal_credentials.txt:
+
+
+sudo tee /var/company/crm/internal_credentials.txt << 'EOF'
+# CRM Application Service Accounts — CONFIDENTIAL
+# Last updated: 2024-08-15  Owner: IT Operations
+crm_db_svc:Cr3mDB#Pr0d99
+crm_backup_svc:B@ckup!Cr3m2024
+crm_api_key:sk-crm-a8f2c91b3e4d7f06
+smtp_relay_svc:M@ilR3lay!Prod
+EOF
+
+Create network_config_backup.tar.gz — create in /tmp first then move:
+
+
+sudo tar -czf /tmp/network_config_backup.tar.gz \
+/etc/hostname /etc/hosts /etc/os-release 2>&1
+echo "Exit code: $?"
+
+
+# Exit code must be 0 before proceeding
+sudo mv /tmp/network_config_backup.tar.gz /var/company/crm/
+
+Set file permissions — 644 so labadmin can read files but not write:
+
+
+sudo chmod 644 /var/company/crm/Q3_client_accounts.csv
+sudo chmod 644 /var/company/crm/internal_credentials.txt
+sudo chmod 644 /var/company/crm/network_config_backup.tar.gz
+
+
